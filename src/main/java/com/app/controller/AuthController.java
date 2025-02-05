@@ -100,6 +100,8 @@ public class AuthController {
             return otp + "   " + mobile;
         }
          return "User not found";
-
      }
-}
+     @PostMapping("/validate-otp")
+     public String validateOtp(@RequestParam String mobile,@RequestParam String otp){
+
+}}

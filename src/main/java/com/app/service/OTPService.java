@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class OTPService {
@@ -17,4 +18,19 @@ public class OTPService {
         otpStorage.put(mobileNumber,otpDetails);
         return otp;
     }
+    public boolean validateOTP(String mobileNumber,String otp){
+        OTPDetails otpDetails =otpStorage.get(mobileNumber);
+        if(otpDetails==null){
+            return false;
+        }
+    long currentTime=System.currentTimeMillis();
+    long otpTime =otpDetails.getTimestamp();
+    long timeDifference= TimeUnit.MILLISECONDS.toMinutes(currentTime-otpTime);
+    if(timeDifference>OTP_EXPIRY_TIME){
+       otpStorage.remove(mobileNumber);
+       return false;
+    }
+    return otpDetails.getOtp().equals(otp);
+    }
+
 }
