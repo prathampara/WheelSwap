@@ -4,6 +4,7 @@ import com.app.entity.User;
 import com.app.payload.JWTTokenDto;
 import com.app.payload.LoginDto;
 import com.app.repository.UserRepository;
+import com.app.service.JWTService;
 import com.app.service.OTPService;
 import com.app.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -20,12 +21,14 @@ public class AuthController {
      private UserRepository userRepository;
      private UserService userService;
      private OTPService otpService;
+     private JWTService jwtService;
 //     private PasswordEncoder passwordEncoder;
-     public AuthController(UserRepository userRepository ,UserService userService,OTPService otpService/*, PasswordEncoder passwordEncoder */) {
+     public AuthController(UserRepository userRepository , UserService userService, OTPService otpService, JWTService jwtService/*, PasswordEncoder passwordEncoder */) {
           this.userRepository = userRepository;
 //         this.passwordEncoder = passwordEncoder;
            this.userService=userService;
          this.otpService = otpService;
+         this.jwtService = jwtService;
      }
 
      @PostMapping("/signup")
@@ -103,5 +106,13 @@ public class AuthController {
      }
      @PostMapping("/validate-otp")
      public String validateOtp(@RequestParam String mobile,@RequestParam String otp){
-
+         boolean status= otpService.validateOTP(mobile,otp);
+         if(status){
+             Optional<User> opUser=userRepository.findByMobile(mobile);
+             if(opUser.isPresent()){
+                 String jwtToken=jwtService.generateToken(opUser.get().getUsername());
+                 return jwtToken;
+             }
+         }
+         return status?"OTP validated successfully":"Invalid OTP";
 }}
