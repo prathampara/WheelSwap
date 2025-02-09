@@ -14,14 +14,6 @@ public class Year {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
     public Long getId() {
         return id;
     }
@@ -30,8 +22,16 @@ public class Year {
         this.id = id;
     }
 
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
     @Column(name = "year", nullable = false)
-private String year;
+private Integer year;
 
 
 

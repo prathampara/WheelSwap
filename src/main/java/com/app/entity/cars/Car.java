@@ -21,6 +21,16 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
