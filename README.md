@@ -1,7 +1,6 @@
 Welcome to the WheelSwap! This project is a robust and secure web application designed to facilitate the exchange of vehicles between users. Built with Spring Boot, Hibernate, Spring Data JPA, MySQL, and secured with Spring Security, this platform provides a seamless experience for users to list, browse, and exchange vehicles.
 
 
-
 Features-
 
 (1) User Authentication and Authorization: Secure user registration, login, and role-based access control using Spring Security.
