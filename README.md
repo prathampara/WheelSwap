@@ -3,6 +3,7 @@ Welcome to the WheelSwap! This project is a robust and secure web application de
 
 Features-
 
+
 (1) User Authentication and Authorization: Secure user registration, login, and role-based access control using Spring Security.
 
 (2) Vehicle Listing: Users can list their vehicles for exchange with details like make, model, year, mileage, and condition.
@@ -16,6 +17,7 @@ Features-
 (6) Admin Dashboard: Admins can manage users, vehicles, and exchange requests.
 
 Technologies Used-
+
 
 (1) Spring Boot: For building the backend application.
 
